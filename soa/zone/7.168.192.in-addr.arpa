@@ -1,0 +1,18 @@
+$ORIGIN 7.168.192.in-addr.arpa.
+$TTL 604800
+
+@ IN SOA ns.intranet. francois.intranet.(
+        2001062501      ; serial  zone reverse
+        604800 ; refresh after x h
+        86400  ;retry after x hour
+        2419200  ; expire after x week
+        604800) ; minimum TTL of x day
+
+		
+; name servers - NS record		
+@ IN NS ns.intranet.
+
+1 PTR ns.intranet.
+2 PTR resolv.intranet.
+4 PTR erp.intranet.
+5 PTR bdd.intranet.
