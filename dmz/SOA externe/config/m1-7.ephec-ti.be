@@ -16,7 +16,7 @@ $TTL    604800
 
 ns	IN	A	135.125.101.202
 www	IN	A	135.125.101.198
-b2b	IN	CNAME	www
+b2b	IN	A	135.125.101.198
 intranet	IN	CNAME	www
 
 mail	IN	A	135.125.101.198

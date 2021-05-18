@@ -10,6 +10,6 @@
 
 zone "m1-7.ephec-ti.be"{
 	type master;
-	file "/etc/bind/m1-7.ephec-ti.be"; 
+	file "/etc/bind/db.m1-7.ephec-ti.be"; 
 	
 };   
