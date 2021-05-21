@@ -1,5 +1,5 @@
 <?php
-    $connexion = mysqli_connect('135.125.101.214:3306', 'root', 'test', 'myDb')or die('Erreur de connexion');
+    $connexion = mysqli_connect('135.125.101.198:3306', 'root', 'root', 'woody')or die('Erreur de connexion');
 ?>
 <html lang = "fr">
 	<head>
@@ -10,17 +10,17 @@
 	<body>
 		<h1> site web b2b de Woodytoys </h1>
 		<?php
-				$test = mysqli_query($connexion,'SELECT * FROM objets;');
+				$test = mysqli_query($connexion,'SELECT * FROM jouets;');
 			while($result = mysqli_fetch_row($test)) {
 				 print '<p>Article : '.$result[0].'. Prix : '.$result[1].'€</p>';
 			};
 
             if(isset($_POST['submit']))
             {
-                $objet = $_POST['objet'];
+                $jouet = $_POST['jouet'];
                 $prix = $_POST['prix'];
 
-                $insert = mysqli_query($connexion,"INSERT INTO `objets`(`name`, `prix`) VALUES ('$objet','$prix')");
+                $insert = mysqli_query($connexion,"INSERT INTO `jouets`(`name`, `prix`) VALUES ('$jouet','$prix')");
 
                 if(!$insert)
                 {
@@ -28,17 +28,19 @@
                 }
                 else
                 {
-                    echo "Donnée bien envoyez. Rechargez la page";
+                    echo "Données bien envoyées";
 
                 }
-            }
-			 mysqli_close($connexion);
+            mysqli_close($connexion);
+	    }
 		?>
         <form method="POST">
-            objet <input type="text" name="objet" placeholder="objet" Required>
-            <br/>
-            prix : <input type="number" name="prix" placeholder="prix" Required>
-            <br/>
+	    <label>Jouet</label>
+            <input type="text" name="jouet" placeholder="jouet" Required>
+            <br><br>
+            <label>Prix</label>
+            <input type="number" name="prix" placeholder="prix" Required>
+            <br><br>
             <input type="submit" name="submit" value="Submit">
         </form>
 	</body>

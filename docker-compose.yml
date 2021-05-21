@@ -49,18 +49,20 @@ services:
     
   db:
     image: mysql:8.0.16
+    command: --default-authentication-plugin=mysql_native_password
     ports: 
         - "3306:3306"
     networks:
       secure_zone:
           ipv4_address: 192.168.7.5
     environment:
-        MYSQL_DATABASE: myDb
+        MYSQL_DATABASE: woody
         MYSQL_ROOT_PASSWORD: root
     volumes:
         - ./erp/datas:/docker-entrypoint-initdb.d
         - persistent:/var/lib/mysql
         - ./resolv.conf:/etc/resolv.conf
+    container_name: db
         
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.8
@@ -74,7 +76,8 @@ services:
   web:
     build: ./dmz/web/.
     ports:
-      - 8081:80
+      - 80:80
+      - 81:8060
     networks:
       reseau_dmz:
           ipv4_address: 192.168.8.2
