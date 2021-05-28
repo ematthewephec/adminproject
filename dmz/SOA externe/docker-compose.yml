@@ -1,0 +1,28 @@
+version: "2"
+
+services:
+
+  soa-ext:
+    build: .
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    networks:
+      dmz:
+          ipv4_address: 172.16.1.2
+    volumes:
+      - ./config/named.conf:/etc/bind/named.conf
+      - ./config/named.conf.local:/etc/bind/named.conf.local
+      - ./config/m1-7.ephec-ti.be:/etc/bind/db.m1-7.ephec-ti.be
+      - ./config/named.conf.default-zones:/etc/bind/named.conf.default-zones
+      - ./config/named.conf.options:/etc/bind/named.conf.options
+    container_name: soa-ext
+    command: "named -c /etc/bind/named.conf -g"
+
+networks:
+  dmz:
+      ipam:
+          driver: default
+          config:
+              - subnet: 172.16.1.0/24
+                gateway: 172.16.1.254
