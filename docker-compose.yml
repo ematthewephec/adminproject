@@ -57,7 +57,7 @@ services:
           ipv4_address: 192.168.7.5
     environment:
         MYSQL_DATABASE: woody
-        MYSQL_ROOT_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: mdpderoot
     volumes:
         - ./erp/datas:/docker-entrypoint-initdb.d
         - persistent:/var/lib/mysql
