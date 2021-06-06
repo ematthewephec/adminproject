@@ -71,7 +71,7 @@ services:
     ports:
         - 8000:80
     environment:
-        MYSQL_ROOT_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: mdpderoot
   
   web:
     build: ./dmz/web/.
