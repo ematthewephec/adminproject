@@ -1,14 +1,13 @@
-#Notre image seras issus d'un image ubuntu
-FROM ubuntu:bionic
+FROM ubuntu:20.04
 
-# verification de MAJ,installation de MAj,installions d'outil basique de rÃ©seau sur notre image
+
 RUN apt update && apt upgrade -y 
 RUN apt install iputils-ping -y  
 RUN apt install net-tools -y
 RUN apt install dnsutils -y
 RUN apt-get install wget -y
 
-#installation des dÃ©pendances
+
 RUN apt install -y apt-utils \
   build-essential \
   wget \
@@ -23,7 +22,7 @@ RUN apt install -y apt-utils \
   libedit-dev \
   libssl-dev
 
-#téléchargement et installation de la dernière version de astérix
+
 WORKDIR /usr/src/asterisk
 RUN cd /usr/src/asterisk
 RUN wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
@@ -38,8 +37,8 @@ COPY voicemail.conf /etc/asterisk
 COPY features.conf /etc/asterisk
 
 #Exposition des ports VOIP
-EXPOSE 5060/tcp
-EXPOSE 5060/udp
+EXPOSE 5872/tcp
+EXPOSE 5872/udp
 #port iax
 EXPOSE 4569/udp
 EXPOSE 4569/tcp
@@ -47,5 +46,4 @@ EXPOSE 4569/tcp
 EXPOSE 19000-20000/udp
 
 
-#lancer astÃ©rix
 CMD ["asterisk","-f"]
